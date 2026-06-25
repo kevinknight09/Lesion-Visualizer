@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Prescription.AI.Api/Prescription.AI.Api.csproj" />
+  <Project Path="Prescription.AI.App/Prescription.AI.App.csproj" />
+</Solution>

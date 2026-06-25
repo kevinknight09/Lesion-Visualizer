@@ -1,0 +1,47 @@
+<div class="main-layout">
+  
+  <!-- LEFT SIDE: Upload Zone -->
+  <div class="sidebar">
+    <h1>{{ title() }}</h1>
+    <p class="subtitle">Upload a patient's medical report (PDF or DOCX) for AI-powered lesion extraction.</p>
+
+    <div class="upload-zone">
+      <input type="file" (change)="onFileSelected($event)" accept=".pdf,.docx,image/*" />
+    </div>
+
+    <!-- Status Messages -->
+    @if (isLoading()) {
+      <div class="status loading">
+        ⟳ AI is analyzing the document...
+      </div>
+    }
+    
+    @if (errorMessage()) {
+      <div class="status error">
+        ⚠ {{ errorMessage() }}
+      </div>
+    }
+
+    <!-- Final Result Data -->
+    @if (lesionData()) {
+      <div class="status success">
+        <h3>Analysis Complete</h3>
+        <p><strong>Lesion Found</strong> <span>{{ lesionData()!.presence ? 'Yes' : 'No' }}</span></p>
+        <p><strong>Location</strong> <span style="color: #ffff00">{{ lesionData()!.location }}</span></p>
+        <p><strong>Size</strong> <span>{{ lesionData()!.size }}</span></p>
+      </div>
+    }
+
+    <!-- Disclaimer added at the bottom -->
+    <div class="disclaimer">
+      ⚠️ <strong>FOR EDUCATIONAL PURPOSES ONLY</strong><br>
+      This tool is a demonstration prototype and is not certified for clinical use or diagnostic decision making.
+    </div>
+  </div>
+
+  <!-- RIGHT SIDE: 3D Canvas -->
+  <div class="viewer-area">
+    <app-viewer [lesionData]="lesionData()"></app-viewer>
+  </div>
+
+</div>

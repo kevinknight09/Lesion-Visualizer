@@ -1,0 +1,6 @@
+@Prescription.AI.Api_HostAddress = http://localhost:5201
+
+GET {{Prescription.AI.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
